@@ -6,18 +6,22 @@ function clearDisplay() {
     output = 0;
 }
 
+//Error Function - ends the program, clears the chain and displays 'Error' on the screen
+function err() {
+    chain = [];
+    output = "Error";
+    console.log(output);
+    return;
+}
+
 //Execute the current chain of calculations, assuming that the chain has a valid end
 //(i.e. it ends in a number!)
 function executeChain() {
     var current;    //Holds a running total
     //Check that the last item in the chain is a number
-    if (isNaN(chain[chain.length-1])) {
-        output = "Error";
-        console.log(output);
-        chain = [];
-        return;
+    if (isNaN(Number(chain[chain.length-1]))) {
+        err();
     }
-
 }
 
 //Mathematical Operator Parser - accepts a string and a pair of numbers and performs the appropriate operation
@@ -36,7 +40,21 @@ function mathematise(op, x, y) {
             return x / y;
             break;
         default:
-            return "Error";
-            break;
+            err();
     }
+}
+
+//Number Conversion Function - Checks that the chain elements on either side are operators and converts to a number
+function numeric(element) {
+    if (element === 0 || element === (chain.length - 1) || isNaN(chain[element-1]) && isNaN(chain[element+1])) {
+        return Number(chain[element]);
+    }
+
+    err();
+}
+
+//Reset the count and display
+function reset() {
+    chain = [];
+    clearDisplay();
 }
