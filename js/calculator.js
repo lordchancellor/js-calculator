@@ -2,7 +2,7 @@ var chain = []; //This array will hold the chained inputs from the calculator
 var output;     //This variable holds any ongoing output to be displayed on the screen
 
 //Check to see if the chain is empty or undefined
-function chainIs§Empty() {
+function chainIsEmpty() {
     if (typeof(chain) === "undefined" || chain.length < 0) {
         return true;
     }
@@ -94,6 +94,7 @@ function equals() {
     executeChain();
 }
 
+//Append an operator to the end of the chain
 function appendOperator(operator) {
     if (chainIsEmpty) {
         err();
@@ -106,5 +107,24 @@ function appendOperator(operator) {
     }
     else {
         chain.push(operator);
-    } 
+    }
+}
+
+//Check to see if the current chain element meets conditions for a decimal point and append one if so
+function appendDecimal() {
+    var current = chain.length - 1;
+
+    if (chainIsEmpty() || isNaN(Number(chain[current]))) {
+        chain.push("0.");
+    }
+    else {
+        //Check to see if the number already contains a decimal place
+        if (Number(chain[current]) % 1 === 0 && chain[current].indexOf(".") === -1) {
+            chain[current] = chain[current] + ".";
+        }
+        else {
+            err();
+            return;
+        }
+    }
 }
