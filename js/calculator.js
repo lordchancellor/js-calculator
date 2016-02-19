@@ -3,7 +3,7 @@ var output;     //This variable holds any ongoing output to be displayed on the 
 
 //Check to see if the chain is empty or undefined
 function chainIsEmpty() {
-    if (typeof(chain) === "undefined" || chain.length < 0) {
+    if (typeof(chain) === "undefined" || chain.length < 1) {
         return true;
     }
     return false;
@@ -11,7 +11,13 @@ function chainIsEmpty() {
 
 //Check to see if the last item in the chain is a number
 function endsInNumber() {
-    if (isNaN(Number(chain[chain.length-1]))) {
+    var current = chain.length - 1;
+
+    //Check to see if a '-' is next to another operator (in which case it's the start of a negative number)
+    if (chain[current] === "-" && isNaN(Number(chain[current-1]))) {
+        return true;
+    }
+    else if (isNaN(Number(chain[current]))) {
         return false;
     }
     return true;
@@ -23,7 +29,8 @@ function clearDisplay() {
 }
 
 //Error Function - ends the program, clears the chain and displays 'Error' on the screen
-function err() {
+function err(message) {
+    console.error(message);
     chain = [];
     output = "Error";
     console.log(output);
@@ -36,7 +43,7 @@ function executeChain() {
 
     //Check that the last item in the chain is a number
     if (!endsInNumber()) {
-        err();
+        err("Chain does not end in a number");
         return;
     }
 
@@ -70,7 +77,7 @@ function numeric(element) {
         return Number(chain[element]);
     }
 
-    err();
+    err("Current element is not a number");
     return;
 }
 
@@ -82,12 +89,12 @@ function reset() {
 
 function equals() {
     if (chainIsEmpty()) {
-        err();
+        err("The chain is empty");
         return;
     }
 
     if (!endsInNumber()) {
-        err();
+        err("The chain does not end in a number");
         return;
     }
 
@@ -96,13 +103,13 @@ function equals() {
 
 //Append an operator to the end of the chain
 function appendOperator(operator) {
-    if (chainIsEmpty) {
-        err();
+    if (chainIsEmpty()) {
+        err("The chain is empty");
         return;
     }
 
-    if (!endsInNumber) {
-        err();
+    if (!endsInNumber()) {
+        err("The chain does not end in a number");
         return;
     }
     else {
@@ -123,8 +130,20 @@ function appendDecimal() {
             chain[current] = chain[current] + ".";
         }
         else {
-            err();
+            err("The current number already contains a decimal point");
             return;
         }
+    }
+}
+
+//The user has pressed a number key
+function appendNumber(number) {
+    var current = chain.length - 1;
+
+    if (chainIsEmpty() || !endsInNumber()) {
+        chain.push(number);
+    }
+    else {
+        chain[current] = chain[current] + number;
     }
 }
