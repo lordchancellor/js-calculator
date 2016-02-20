@@ -147,3 +147,22 @@ function appendNumber(number) {
         chain[current] = chain[current] + number;
     }
 }
+
+//The user has pressed the -/+ button
+function reverseSign() {
+    var current = chain.length - 1;
+
+    if (chainIsEmpty() || !endsInNumber()) {
+        chain.push("-");
+        return;
+    }
+
+    if (!isNaN(Number(chain[current]))) {
+        if (Number(chain[current]) >= 0) {
+            chain[current] = "-" + chain[current];
+        }
+        else {
+            chain[current] = chain[current].substring(1);
+        }
+    }
+}
