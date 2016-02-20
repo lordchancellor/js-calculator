@@ -1,5 +1,6 @@
-var chain = []; //This array will hold the chained inputs from the calculator
-var output;     //This variable holds any ongoing output to be displayed on the screen
+var chain = [];     //This array will hold the chained inputs from the calculator
+var output = 0;     //This variable holds any ongoing output to be displayed on the screen
+var answer = 0;     //Holds the previous answer, so that it can be called into the next calculation
 
 //Check to see if the chain is empty or undefined
 function chainIsEmpty() {
@@ -28,10 +29,15 @@ function clearDisplay() {
     output = 0;
 }
 
+//Empties the chain for the next pass of calculations
+function clearChain() {
+    chain = [];
+}
+
 //Error Function - ends the program, clears the chain and displays 'Error' on the screen
 function err(message) {
     console.error(message);
-    chain = [];
+    clearChain();
     output = "Error";
     console.log(output);
 }
@@ -52,7 +58,7 @@ function executeChain() {
 }
 
 //Mathematical Operator Parser - accepts a string and a pair of numbers and performs the appropriate operation
-function mathematise(op, x, y) {
+function mathematise(x, op, y) {
     switch(op) {
         case "+":
             return x + y;
@@ -71,19 +77,9 @@ function mathematise(op, x, y) {
     }
 }
 
-//Number Conversion Function - Checks that the chain elements on either side are operators and converts to a number
-function numeric(element) {
-    if (element === 0 || element === (chain.length - 1) || isNaN(Number(chain[element-1])) && isNaN(Number(chain[element+1]))) {
-        return Number(chain[element]);
-    }
-
-    err("Current element is not a number");
-    return;
-}
-
 //Reset the count and display
 function reset() {
-    chain = [];
+    clearChain();
     clearDisplay();
 }
 
@@ -98,7 +94,7 @@ function equals() {
         return;
     }
 
-    executeChain();
+    calculate();
 }
 
 //Append an operator to the end of the chain
@@ -165,4 +161,41 @@ function reverseSign() {
             chain[current] = chain[current].substring(1);
         }
     }
+}
+
+//The user has pressed the ANSWER button - pulls the most recent answer into the chain
+function answer() {
+    if (chainIsEmpty() || !endsInNumber()) {
+        chain.push(answer);
+        return;
+    }
+    else if (endsInNumber()) {
+        clearChain();
+        chain.push(answer);
+        return;
+    }
+    else {
+        chain[chain.length - 1] = chain[chain.length - 1] + answer;
+    }
+}
+
+//Run the current set of calculations - called every time the user presses an operator or the equals button
+function calculate() {
+    //If the chain only contains a single number we don't do much here
+    if (chain.length === 1) {
+        output = answer = chain[0];
+        return;
+    }
+
+    //Assuming everything is working correctly, the chain length will be 3 at this point ([number, operator, number])
+    if (chain.length === 3) {
+        output = mathematise(Number(chain[0]), chain[1], Number(chain[2]));
+        answer = output;
+        clearChain();
+        console.log(output);
+        return;
+    }
+
+    err("Invalid number of items in the chain");
+    return;
 }
