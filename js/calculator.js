@@ -42,21 +42,6 @@ function err(message) {
     console.log(output);
 }
 
-//Execute the current chain of calculations, assuming that the chain has a valid end
-//(i.e. it ends in a number!)
-function executeChain() {
-    var current;    //Holds a running total
-
-    //Check that the last item in the chain is a number
-    if (!endsInNumber()) {
-        err("Chain does not end in a number");
-        return;
-    }
-
-    //Code to execute the chain
-    console.log("Here is where you would now see some calculating going down");
-}
-
 //Mathematical Operator Parser - accepts a string and a pair of numbers and performs the appropriate operation
 function mathematise(x, op, y) {
     switch(op) {
@@ -73,7 +58,8 @@ function mathematise(x, op, y) {
             return x / y;
             break;
         default:
-            err();
+            err("Invalid operator");
+            return;
     }
 }
 
@@ -81,6 +67,10 @@ function mathematise(x, op, y) {
 function reset() {
     clearChain();
     clearDisplay();
+}
+
+function clearStep() {
+    chain.pop();
 }
 
 function equals() {
