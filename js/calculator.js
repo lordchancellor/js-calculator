@@ -169,7 +169,7 @@ function reverseSign() {
 }
 
 //The user has pressed the ANSWER button - pulls the most recent answer into the chain
-function answer() {
+function prevAnswer() {
     if (chainIsEmpty() || !endsInNumber()) {
         chain.push(answer);
         console.log("Pushing " + answer + " to the chain");
