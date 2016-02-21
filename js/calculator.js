@@ -27,6 +27,7 @@ function endsInNumber() {
 //clearDisplay will set the screen display to 0
 function clearDisplay() {
     output = 0;
+    updateDisplay(output);
 }
 
 //Empties the chain for the next pass of calculations
@@ -39,6 +40,7 @@ function err(message) {
     console.error(message);
     clearChain();
     output = "Error";
+    updateDisplay(output);
     console.log(output);
 }
 
@@ -69,8 +71,15 @@ function reset() {
     clearDisplay();
 }
 
+//Reset the current step/button-press
 function clearStep() {
     chain.pop();
+}
+
+//Update the calculator display as we go
+function updateDisplay(display) {
+    //Code to update the display - once wired into the calculator
+    console.log("Displayed: " + display);
 }
 
 function equals() {
@@ -174,6 +183,7 @@ function calculate() {
     //If the chain only contains a single number we don't do much here
     if (chain.length === 1) {
         output = answer = chain[0];
+        updateDisplay(output);
         return;
     }
 
@@ -181,6 +191,7 @@ function calculate() {
     if (chain.length === 3) {
         output = mathematise(Number(chain[0]), chain[1], Number(chain[2]));
         answer = output;
+        updateDisplay(output);
         clearChain();
         console.log(output);
         return;
