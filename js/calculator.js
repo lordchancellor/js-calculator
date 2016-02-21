@@ -79,7 +79,11 @@ function clearStep() {
 //Update the calculator display as we go
 function updateDisplay(display) {
     //Code to update the display - once wired into the calculator
+    var displayPanel = document.getElementById("output");
+    displayPanel.textContent = display;
+
     console.log("Displayed: " + display);
+
 }
 
 function equals() {
