@@ -38,10 +38,10 @@ function clearChain() {
 //Error Function - ends the program, clears the chain and displays 'Error' on the screen
 function err(message) {
     console.error(message);
-    clearChain();
     output = "Error";
     updateDisplay(output);
     console.log(output);
+    clearChain();
 }
 
 //Mathematical Operator Parser - accepts a string and a pair of numbers and performs the appropriate operation
@@ -57,6 +57,14 @@ function mathematise(x, op, y) {
             return x * y;
             break;
         case "/":
+            if (x === 0) {
+                return 0;
+                break;
+            }
+            else if (y === 0) {
+                return "dbz";   //Divide By Zero (Error);
+                break;
+            }
             return x / y;
             break;
         default:
@@ -78,7 +86,6 @@ function clearStep() {
 
 //Update the calculator display as we go
 function updateDisplay(display) {
-    //Code to update the display - once wired into the calculator
     var displayPanel = document.getElementById("output");
     displayPanel.textContent = display;
 
@@ -201,6 +208,12 @@ function calculate() {
     //Assuming everything is working correctly, the chain length will be 3 at this point ([number, operator, number])
     if (chain.length === 3) {
         output = mathematise(Number(chain[0]), chain[1], Number(chain[2]));
+
+        if (output === "dbz") {
+            err("You cannot divide by zero");
+            return;
+        }
+
         answer = output;
         updateDisplay(output);
         clearChain();
