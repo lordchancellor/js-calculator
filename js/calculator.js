@@ -88,7 +88,8 @@ function updateDisplay(display) {
 
 function equals() {
     if (chainIsEmpty()) {
-        err("The chain is empty");
+        answer = output = 0;
+        updateDisplay(output);
         return;
     }
 
@@ -103,8 +104,8 @@ function equals() {
 //Append an operator to the end of the chain
 function appendOperator(operator) {
     if (chainIsEmpty()) {
-        err("The chain is empty");
-        return;
+        chain.push(answer);
+        updateDisplay(answer);
     }
 
     if (!endsInNumber()) {
