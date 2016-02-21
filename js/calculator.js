@@ -83,7 +83,7 @@ function updateDisplay(display) {
     displayPanel.textContent = display;
 
     console.log("Displayed: " + display);
-
+    console.log("Current Chain: " + chain);
 }
 
 function equals() {
@@ -133,26 +133,27 @@ function appendDecimal() {
             return;
         }
     }
+    updateDisplay(chain[current]);
 }
 
 //The user has pressed a number key
 function appendNumber(number) {
-    var current = chain.length - 1;
 
     if (chainIsEmpty() || !endsInNumber()) {
         chain.push(number);
     }
     else {
-        chain[current] = chain[current] + number;
+        chain[chain.length-1] = chain[chain.length-1] + number;
     }
+    updateDisplay(chain[chain.length-1]);
+    console.log(output);
 }
 
 //The user has pressed the -/+ button
 function reverseSign() {
-    var current = chain.length - 1;
-
     if (chainIsEmpty() || !endsInNumber()) {
         chain.push("-");
+        updateDisplay(chain[chain.length-1]);
         return;
     }
 
@@ -163,6 +164,7 @@ function reverseSign() {
         else {
             chain[current] = chain[current].substring(1);
         }
+        updateDisplay(chain[current]);
     }
 }
 
@@ -170,16 +172,20 @@ function reverseSign() {
 function answer() {
     if (chainIsEmpty() || !endsInNumber()) {
         chain.push(answer);
-        return;
+        console.log("Pushing " + answer + " to the chain");
     }
     else if (endsInNumber()) {
         clearChain();
+        console.log("Clearing the chain...");
         chain.push(answer);
-        return;
+        console.log("Pushing " + answer + " to the chain");
     }
     else {
         chain[chain.length - 1] = chain[chain.length - 1] + answer;
+        console.log("Pushing " + answer + " to the chain");
     }
+    updateDisplay(chain[chain.length-1]);
+    return;
 }
 
 //Run the current set of calculations - called every time the user presses an operator or the equals button

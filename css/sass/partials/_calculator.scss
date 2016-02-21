@@ -15,6 +15,13 @@
             background: blue;
             color: #333;
             @include marginX(5px);
+            align-items: center;
+            font-size: 3.0rem;
+
+            &.btn-wordy {
+                font-size: 1.0rem;
+                text-transform: uppercase;
+            }
 
             &:hover {
                 text-decoration: none;
@@ -46,6 +53,7 @@
                 background: #ccc;
                 padding: 10px 15px;
                 text-align: right;
+                text-transform: uppercase;
                 width: 80%;
                 order: 1;
 

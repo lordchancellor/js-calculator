@@ -19,7 +19,12 @@ body {
       background: blue;
       color: #333;
       margin-left: 5px;
-      margin-right: 5px; }
+      margin-right: 5px;
+      align-items: center;
+      font-size: 3.0rem; }
+      #calculatorBody .calcRow .btn-calc.btn-wordy {
+        font-size: 1.0rem;
+        text-transform: uppercase; }
       #calculatorBody .calcRow .btn-calc:hover {
         text-decoration: none; }
     #calculatorBody .calcRow a:first-child {
@@ -36,6 +41,7 @@ body {
       background: #ccc;
       padding: 10px 15px;
       text-align: right;
+      text-transform: uppercase;
       width: 80%;
       order: 1; }
       #calculatorBody .calcRow.calcHeader .outputDisplay h3 {
