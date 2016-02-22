@@ -7,6 +7,7 @@
         display: flex;
         flex-wrap: nowrap;
         padding: 10px;
+        position: relative;
 
         .btn-calc {
             border-radius: 50%;
@@ -21,6 +22,18 @@
             &.btn-wordy {
                 font-size: 1.0rem;
                 text-transform: uppercase;
+            }
+
+            &.numberKey {
+                background: $numberKey;
+            }
+
+            &.operatorKey {
+                background: $operatorKey;
+            }
+
+            &.functionKey {
+                background: $functionKey;
             }
 
             &:hover {
