@@ -81,7 +81,10 @@ function reset() {
 
 //Reset the current step/button-press
 function clearStep() {
-    chain.pop();
+    if (endsInNumber()) {
+        chain.pop();
+        updateDisplay("0");
+    }
 }
 
 //Update the calculator display as we go
