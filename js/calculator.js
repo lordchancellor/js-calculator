@@ -81,7 +81,10 @@ function reset() {
 
 //Reset the current step/button-press
 function clearStep() {
-    chain.pop();
+    if (endsInNumber()) {
+        chain.pop();
+        updateDisplay("0");
+    }
 }
 
 //Update the calculator display as we go
@@ -120,6 +123,10 @@ function appendOperator(operator) {
         return;
     }
     else {
+        if (chain.length === 3) {
+            calculate();
+            chain.push(answer);
+        }
         chain.push(operator);
     }
 }
