@@ -1,6 +1,7 @@
 var chain = [];     //This array will hold the chained inputs from the calculator
 var output = 0;     //This variable holds any ongoing output to be displayed on the screen
 var answer = 0;     //Holds the previous answer, so that it can be called into the next calculation
+var didPressAns = false;    //Check to see if the ANSWER button has been pressed (in which case, we don't want to allow number appending)
 
 //Check to see if the chain is empty or undefined
 function chainIsEmpty() {
@@ -113,6 +114,10 @@ function equals() {
 
 //Append an operator to the end of the chain
 function appendOperator(operator) {
+    if (didPressAns) {
+        didPressAns = false;
+    }
+    
     if (chainIsEmpty()) {
         chain.push(answer);
         updateDisplay(answer);
@@ -134,6 +139,11 @@ function appendOperator(operator) {
 //Check to see if the current chain element meets conditions for a decimal point and append one if so
 function appendDecimal() {
     var current = chain.length - 1;
+    
+    if (didPressAns) {
+        chain.pop();
+        didPressAns = false;
+    }
 
     if (chainIsEmpty() || isNaN(Number(chain[current]))) {
         chain.push("0.");
@@ -153,6 +163,10 @@ function appendDecimal() {
 
 //The user has pressed a number key
 function appendNumber(number) {
+    if (didPressAns) {
+        chain.pop();
+        didPressAns = false;
+    }
 
     if (chainIsEmpty() || !endsInNumber()) {
         chain.push(number);
@@ -200,6 +214,7 @@ function prevAnswer() {
         console.log("Pushing " + answer + " to the chain");
     }
     updateDisplay(chain[chain.length-1]);
+    didPressAns = true;
     return;
 }
 
