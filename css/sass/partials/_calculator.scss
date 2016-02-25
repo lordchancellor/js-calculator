@@ -66,14 +66,16 @@
         &.calcHeader {
             .outputDisplay {
                 background: #ccc;
-                padding: 10px 15px;
+                padding: 5px 15px 0px;
                 text-align: right;
                 text-transform: uppercase;
                 width: 80%;
                 order: 1;
+                font-family: 'LCD', sans-serif;
 
                 h3 {
                     margin: 0;
+                    font-size: 3.5rem;
                 }
             }
         }
