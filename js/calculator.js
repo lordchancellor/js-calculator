@@ -186,6 +186,8 @@ function reverseSign() {
         return;
     }
 
+    var current = chain.length - 1;
+    
     if (!isNaN(Number(chain[current]))) {
         if (Number(chain[current]) >= 0) {
             chain[current] = "-" + chain[current];
@@ -200,17 +202,17 @@ function reverseSign() {
 //The user has pressed the ANSWER button - pulls the most recent answer into the chain
 function prevAnswer() {
     if (chainIsEmpty() || !endsInNumber()) {
-        chain.push(answer);
+        chain.push(answer.toString());
         console.log("Pushing " + answer + " to the chain");
     }
     else if (endsInNumber()) {
         clearChain();
         console.log("Clearing the chain...");
-        chain.push(answer);
+        chain.push(answer.toString());
         console.log("Pushing " + answer + " to the chain");
     }
     else {
-        chain[chain.length - 1] = chain[chain.length - 1] + answer;
+        chain[chain.length - 1] = chain[chain.length - 1] + answer.toString();
         console.log("Pushing " + answer + " to the chain");
     }
     updateDisplay(chain[chain.length-1]);
