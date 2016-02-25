@@ -202,17 +202,17 @@ function reverseSign() {
 //The user has pressed the ANSWER button - pulls the most recent answer into the chain
 function prevAnswer() {
     if (chainIsEmpty() || !endsInNumber()) {
-        chain.push(answer.toString());
+        chain.push(String(answer));
         console.log("Pushing " + answer + " to the chain");
     }
     else if (endsInNumber()) {
         clearChain();
         console.log("Clearing the chain...");
-        chain.push(answer.toString());
+        chain.push(String(answer));
         console.log("Pushing " + answer + " to the chain");
     }
     else {
-        chain[chain.length - 1] = chain[chain.length - 1] + answer.toString();
+        chain[chain.length - 1] = chain[chain.length - 1] + String(answer);
         console.log("Pushing " + answer + " to the chain");
     }
     updateDisplay(chain[chain.length-1]);
