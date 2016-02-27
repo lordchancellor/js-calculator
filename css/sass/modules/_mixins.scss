@@ -36,3 +36,9 @@
     background-clip: border-box;
     background-attachment: scroll;
 }
+
+@mixin boxShadow($x, $y, $z, $color) {
+    -webkit-box-shadow: $x $y $z $color;
+    -moz-box-shadow: $x $y $z $color;
+    box-shadow: $x $y $z $color;
+}

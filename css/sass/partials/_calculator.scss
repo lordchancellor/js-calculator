@@ -1,28 +1,38 @@
 #calculatorBody {
-    //width: 100%;
+    width: 450px;
     border: 1px solid #333;
     padding: 20px;
+    @include marginX(auto);
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px $shadow;
+    background: $calcBackground;
 
     .calcRow {
         display: flex;
         flex-wrap: nowrap;
         padding: 10px;
         position: relative;
+        justify-content: space-around;
 
         .btn-calc {
             display: flex;
             justify-content: center;
             border-radius: 50%;
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             background: blue;
             color: #333;
             @include marginX(5px);
             align-items: center;
-            font-size: 3.0rem;
+            font-size: 2.0rem;
+            box-shadow: 3px 3px 15px $shadow;
+
+            &:active {
+                @include boxShadow(0px, 0px, 20px, $buttonPress);
+            }
 
             &.btn-wordy {
-                font-size: 1.0rem;
+                font-size: 1.5rem;
                 text-transform: uppercase;
             }
 
@@ -65,13 +75,14 @@
 
         &.calcHeader {
             .outputDisplay {
-                background: #ccc;
+                background: $display;
                 padding: 5px 15px 0px;
                 text-align: right;
                 text-transform: uppercase;
-                width: 80%;
+                width: 100%;
                 order: 1;
                 font-family: 'LCD', sans-serif;
+                border: 1px solid $displayBorder;
 
                 h3 {
                     margin: 0;

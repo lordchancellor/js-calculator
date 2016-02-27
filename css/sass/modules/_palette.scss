@@ -1,11 +1,18 @@
 //PALETTE
+$shadow:            #999999;
+$buttonPress:       #eeeeee;
 
 //BUTTON COLOURS
-$numberKey:       red;
-$numberShade:     black;
+$numberKey:         rgb(255, 150, 200);
+$numberShade:       black;
 
-$operatorKey:     blue;
-$operatorShade:   black;
+$operatorKey:       rgb(0, 180, 200);
+$operatorShade:     black;
 
-$functionKey:     yellow;
-$functionShade:   black;
+$functionKey:       rgb(200, 150, 200);
+$functionShade:     black;
+
+//CALCULATOR COLOURS
+$calcBackground:    rgb(100, 255, 200);
+$display:           #cccccc;
+$displayBorder:     #999999;
