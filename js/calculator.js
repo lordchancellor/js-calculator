@@ -45,6 +45,41 @@ function err(message) {
     clearChain();
 }
 
+//A function to work around JavaScript floating point decimal precision
+function roundFix(number) {
+    //Check to see if the number contains a decimal point. If not, we just return it (as it doesn't need fixing)
+    if (number % 1 === 0) {
+        console.log("No decimals here");
+        return number;
+    }
+
+    //Round the number to a fixed number of decimal places
+    number = number.toFixed(17);
+
+    //Convert the number to a String
+    var numString = String(number);
+
+    //Parse the string from right to left, removing zeros until we hit a non-zero or the decimal point
+    for (var i = numString.length; i > 0; i = i - 1) {
+        if (numString.charAt(i - 1) === "0") {
+            numString = numString.substring(0, i - 1);
+            console.log("Found a zero. Removing...");
+            continue;
+        }
+        else if (numString.charAt(i - 1) === ".") {
+            numString = numString.substring(0, i - 1);
+            console.log("Found a decimal point. Removing...");
+            break;
+        }
+        else {
+            console.log("Non-zero, non-decimal point found. Returning...");
+            break;
+        }
+    }
+
+    return Number(numString);
+}
+
 //Mathematical Operator Parser - accepts a string and a pair of numbers and performs the appropriate operation
 function mathematise(x, op, y) {
     switch(op) {
@@ -55,7 +90,7 @@ function mathematise(x, op, y) {
             return x - y;
             break;
         case "*":
-            return x * y;
+            return roundFix(x * y);
             break;
         case "/":
             if (x === 0) {
@@ -66,7 +101,7 @@ function mathematise(x, op, y) {
                 return "dbz";   //Divide By Zero (Error);
                 break;
             }
-            return x / y;
+            return roundFix(x / y);
             break;
         default:
             err("Invalid operator");
@@ -117,7 +152,7 @@ function appendOperator(operator) {
     if (didPressAns) {
         didPressAns = false;
     }
-    
+
     if (chainIsEmpty()) {
         chain.push(answer);
         updateDisplay(answer);
@@ -139,7 +174,7 @@ function appendOperator(operator) {
 //Check to see if the current chain element meets conditions for a decimal point and append one if so
 function appendDecimal() {
     var current = chain.length - 1;
-    
+
     if (didPressAns) {
         chain.pop();
         didPressAns = false;
@@ -187,7 +222,7 @@ function reverseSign() {
     }
 
     var current = chain.length - 1;
-    
+
     if (!isNaN(Number(chain[current]))) {
         if (Number(chain[current]) >= 0) {
             chain[current] = "-" + chain[current];
