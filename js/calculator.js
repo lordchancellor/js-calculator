@@ -285,9 +285,15 @@
         if (chain.length === 3) {
             output = mathematise(Number(chain[0]), chain[1], Number(chain[2]));
 
+            //Check for a divide by zero error
             if (output === "dbz") {
                 err("You cannot divide by zero");
                 return;
+            }
+
+            //Check for answers that are too long for the display and round accordingly
+            if (output > 999999999999) {
+                output = output.toPrecision(10);
             }
 
             answer = output;
