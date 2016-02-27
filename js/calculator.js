@@ -116,11 +116,20 @@
         clearDisplay();
     }
 
-    //Reset the current step/button-press
-    function clearStep() {
+    //Deletes digits from the current step (if applicable)
+    function del() {
         if (endsInNumber()) {
-            chain.pop();
-            updateDisplay("0");
+            var step = chain[chain.length - 1];
+
+            if (step.length > 1) {
+                step = step.substring(0, step.length-1);
+                chain[chain.length - 1] = step;
+                updateDisplay(step);
+            }
+            else {
+                chain.pop();
+                updateDisplay("0");
+            }
         }
     }
 
@@ -286,7 +295,7 @@
     }
 
     window.reset = reset;
-    window.clearStep = clearStep;
+    window.del = del;
     window.reverseSign = reverseSign;
     window.appendOperator = appendOperator;
     window.appendNumber = appendNumber;
