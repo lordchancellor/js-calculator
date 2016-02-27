@@ -196,7 +196,10 @@
         else {
             //Check to see if the number already contains a decimal place
             if (Number(chain[current]) % 1 === 0 && chain[current].indexOf(".") === -1) {
-                chain[current] = chain[current] + ".";
+                //Maximum 12 digits (or 14 if negative and with a decimal point)
+                if (chain[chain.length-1].length <= 11) {
+                    chain[current] = chain[current] + ".";
+                }
             }
             else {
                 err("The current number already contains a decimal point");
@@ -217,7 +220,11 @@
             chain.push(number);
         }
         else {
-            chain[chain.length-1] = chain[chain.length-1] + number;
+            var val = chain[chain.length - 1];
+            //Maximum 12 digits (or 14 if negative and with a decimal point)
+            if (val.length <= 11 || val.charAt(val.length-1) === ".") {
+                chain[chain.length - 1] = chain[chain.length - 1] + number;
+            }
         }
         updateDisplay(chain[chain.length-1]);
         console.log(output);
