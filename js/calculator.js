@@ -53,8 +53,8 @@ function roundFix(number) {
         return number;
     }
 
-    //Round the number to a fixed number of decimal places
-    number = number.toFixed(17);
+    //Round the number to a (large) fixed number of decimal places
+    number = number.toFixed(14);
 
     //Convert the number to a String
     var numString = String(number);
@@ -193,7 +193,7 @@ function appendDecimal() {
             return;
         }
     }
-    updateDisplay(chain[current]);
+    updateDisplay(chain[chain.length-1]);
 }
 
 //The user has pressed a number key
