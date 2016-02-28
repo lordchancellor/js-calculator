@@ -1,5 +1,6 @@
 #calculatorBody {
-    width: 450px;
+    width: 100%;
+    max-width: 450px;
     border: 1px solid #333;
     padding: 20px;
     @include marginX(auto);
@@ -14,26 +15,86 @@
         position: relative;
         justify-content: space-around;
 
+        &.calcHeader {
+            .outputDisplay {
+                background: $display;
+                padding: 5px 5px 0px;
+                text-align: right;
+                text-transform: uppercase;
+                width: 100%;
+                order: 1;
+                font-family: 'LCD', sans-serif;
+                border: 1px solid $displayBorder;
+
+                h3 {
+                    margin: 0;
+                    font-size: 2.05rem;
+
+/*
+                    @media screen and (min-width: 450px) {
+                        font-size: 2.6rem;
+                    }
+
+                    @media screen and (min-width: 768px) {
+                        font-size: 3.3rem;
+                        @include paddingX(15px);
+                    }
+*/
+                    @media screen and (min-width: 450px) {
+                        font-size: 3.3rem;
+                        @include paddingX(15px);
+                    }
+                }
+            }
+        }
+
         .btn-calc {
             display: flex;
             justify-content: center;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
+            @include circle-div(50px);
             background: blue;
             color: #333;
             @include marginX(5px);
             align-items: center;
-            font-size: 2.0rem;
+            font-size: 1.5rem;
             box-shadow: 3px 3px 15px $shadow;
+
+/*
+            @media screen and (min-width: 450px) {
+                @include circle-div(60px);
+                font-size: 1.7rem;
+            }
+
+            @media screen and (min-width: 768px) {
+                @include circle-div(80px);
+                font-size: 2.0rem;
+            }
+*/
+            @media screen and (min-width: 450px) {
+                @include circle-div(80px);
+                font-size: 2.0rem;
+            }
 
             &:active {
                 @include boxShadow(0px, 0px, 20px, $buttonPress);
             }
 
             &.btn-wordy {
-                font-size: 1.5rem;
+                font-size: 0.75rem;
                 text-transform: uppercase;
+
+                @media screen and (min-width: 450px) {
+                    font-size: 1.3rem;
+                }
+
+                @media screen and (min-width: 768px) {
+                    font-size: 1.5rem;
+                }
+            }
+
+            &.btn-reverse {
+                @extend .btn-wordy;
+                font-size: 1.1rem;
             }
 
             &.numberKey {
@@ -42,6 +103,7 @@
 
             &.operatorKey {
                 background: $operatorKey;
+                padding-bottom: 10px;
             }
 
             &.functionKey {
@@ -70,24 +132,6 @@
             &:last-child {
                 order: 4;
                 margin-right: 0px;
-            }
-        }
-
-        &.calcHeader {
-            .outputDisplay {
-                background: $display;
-                padding: 5px 15px 0px;
-                text-align: right;
-                text-transform: uppercase;
-                width: 100%;
-                order: 1;
-                font-family: 'LCD', sans-serif;
-                border: 1px solid $displayBorder;
-
-                h3 {
-                    margin: 0;
-                    font-size: 3.5rem;
-                }
             }
         }
     }

@@ -1,22 +1,59 @@
 //MAIN CONTENT
 
 h1 {
-    margin-bottom: 30px;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    text-align: center;
+
+/*
+    @media screen and (min-width: 768px) {
+        font-size: 2.25rem;
+        margin-bottom: 30px;
+    }
+*/
+
+    @media screen and (min-width: 450px) {
+        font-size: 2.25rem;
+        margin-bottom: 30px;
+    }
 }
 
 //BUTTONS
 .buttonWrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+
+/*
+    @media screen and (min-width: 450px) {
+        margin-top: 25px;
+    }
+
+    @media screen and (min-width: 768px) {
+        margin-top: 35px;
+        margin-bottom: 20px;
+    }
+*/
+    @media screen and (min-width: 450px) {
+            margin-top: 35px;
+            margin-bottom: 20px;
+    }
 
     a.btn {
+        margin-top: 15px;
+
+        @media screen and (min-width: 450px) {
+            margin-top: 5px;
+        }
+
         &:first-of-type {
-            margin-right: 2px;
+            margin-right: 4px;
         }
 
         &:last-of-type {
-            margin-left: 2px;
+            margin-left: 4px;
         }
     }
     .btn-github {

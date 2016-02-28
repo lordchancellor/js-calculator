@@ -9,16 +9,49 @@ body {
   font-family: LCD;
   src: url(../fonts/digital-7.ttf); }
 h1 {
-  margin-bottom: 30px; }
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  text-align: center;
+  /*
+      @media screen and (min-width: 768px) {
+          font-size: 2.25rem;
+          margin-bottom: 30px;
+      }
+  */ }
+  @media screen and (min-width: 450px) {
+    h1 {
+      font-size: 2.25rem;
+      margin-bottom: 30px; } }
 
 .buttonWrapper {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  margin-top: 50px; }
-  .buttonWrapper a.btn:first-of-type {
-    margin-right: 2px; }
-  .buttonWrapper a.btn:last-of-type {
-    margin-left: 2px; }
+  margin-top: 25px;
+  margin-bottom: 10px;
+  /*
+      @media screen and (min-width: 450px) {
+          margin-top: 25px;
+      }
+  
+      @media screen and (min-width: 768px) {
+          margin-top: 35px;
+          margin-bottom: 20px;
+      }
+  */ }
+  @media screen and (min-width: 450px) {
+    .buttonWrapper {
+      margin-top: 35px;
+      margin-bottom: 20px; } }
+  .buttonWrapper a.btn {
+    margin-top: 15px; }
+    @media screen and (min-width: 450px) {
+      .buttonWrapper a.btn {
+        margin-top: 5px; } }
+    .buttonWrapper a.btn:first-of-type {
+      margin-right: 4px; }
+    .buttonWrapper a.btn:last-of-type {
+      margin-left: 4px; }
   .buttonWrapper .btn-github {
     background: #333333;
     border-color: #222222;
@@ -29,7 +62,8 @@ h1 {
       color: #ffffff; }
 
 #calculatorBody {
-  width: 450px;
+  width: 100%;
+  max-width: 450px;
   border: 1px solid #333;
   padding: 20px;
   margin-left: auto;
@@ -43,32 +77,85 @@ h1 {
     padding: 10px;
     position: relative;
     justify-content: space-around; }
+    #calculatorBody .calcRow.calcHeader .outputDisplay {
+      background: #cccccc;
+      padding: 5px 5px 0px;
+      text-align: right;
+      text-transform: uppercase;
+      width: 100%;
+      order: 1;
+      font-family: 'LCD', sans-serif;
+      border: 1px solid #999999; }
+      #calculatorBody .calcRow.calcHeader .outputDisplay h3 {
+        margin: 0;
+        font-size: 2.05rem;
+        /*
+                            @media screen and (min-width: 450px) {
+                                font-size: 2.6rem;
+                            }
+        
+                            @media screen and (min-width: 768px) {
+                                font-size: 3.3rem;
+                                @include paddingX(15px);
+                            }
+        */ }
+        @media screen and (min-width: 450px) {
+          #calculatorBody .calcRow.calcHeader .outputDisplay h3 {
+            font-size: 3.3rem;
+            padding-left: 15px;
+            padding-right: 15px; } }
     #calculatorBody .calcRow .btn-calc {
       display: flex;
       justify-content: center;
       border-radius: 50%;
-      width: 80px;
-      height: 80px;
+      height: 50px;
+      width: 50px;
       background: blue;
       color: #333;
       margin-left: 5px;
       margin-right: 5px;
       align-items: center;
-      font-size: 2.0rem;
-      box-shadow: 3px 3px 15px #999999; }
+      font-size: 1.5rem;
+      box-shadow: 3px 3px 15px #999999;
+      /*
+                  @media screen and (min-width: 450px) {
+                      @include circle-div(60px);
+                      font-size: 1.7rem;
+                  }
+      
+                  @media screen and (min-width: 768px) {
+                      @include circle-div(80px);
+                      font-size: 2.0rem;
+                  }
+      */ }
+      @media screen and (min-width: 450px) {
+        #calculatorBody .calcRow .btn-calc {
+          border-radius: 50%;
+          height: 80px;
+          width: 80px;
+          font-size: 2.0rem; } }
       #calculatorBody .calcRow .btn-calc:active {
         -webkit-box-shadow: 0px 0px 20px #eeeeee;
         -moz-box-shadow: 0px 0px 20px #eeeeee;
         box-shadow: 0px 0px 20px #eeeeee; }
-      #calculatorBody .calcRow .btn-calc.btn-wordy {
-        font-size: 1.5rem;
+      #calculatorBody .calcRow .btn-calc.btn-wordy, #calculatorBody .calcRow .btn-calc.btn-reverse {
+        font-size: 0.75rem;
         text-transform: uppercase; }
+        @media screen and (min-width: 450px) {
+          #calculatorBody .calcRow .btn-calc.btn-wordy, #calculatorBody .calcRow .btn-calc.btn-reverse {
+            font-size: 1.3rem; } }
+        @media screen and (min-width: 768px) {
+          #calculatorBody .calcRow .btn-calc.btn-wordy, #calculatorBody .calcRow .btn-calc.btn-reverse {
+            font-size: 1.5rem; } }
+      #calculatorBody .calcRow .btn-calc.btn-reverse {
+        font-size: 1.1rem; }
       #calculatorBody .calcRow .btn-calc.numberKey {
-        background: #fde9eb; }
+        background: #E3D2D3; }
       #calculatorBody .calcRow .btn-calc.operatorKey {
-        background: #ab0239; }
+        background: #69AACA;
+        padding-bottom: 10px; }
       #calculatorBody .calcRow .btn-calc.functionKey {
-        background: #c896c8; }
+        background: #7FB08A; }
       #calculatorBody .calcRow .btn-calc:hover {
         text-decoration: none; }
     #calculatorBody .calcRow a:first-child {
@@ -81,17 +168,5 @@ h1 {
     #calculatorBody .calcRow a:last-child {
       order: 4;
       margin-right: 0px; }
-    #calculatorBody .calcRow.calcHeader .outputDisplay {
-      background: #cccccc;
-      padding: 5px 15px 0px;
-      text-align: right;
-      text-transform: uppercase;
-      width: 100%;
-      order: 1;
-      font-family: 'LCD', sans-serif;
-      border: 1px solid #999999; }
-      #calculatorBody .calcRow.calcHeader .outputDisplay h3 {
-        margin: 0;
-        font-size: 3.5rem; }
 
 /*# sourceMappingURL=style.css.map */

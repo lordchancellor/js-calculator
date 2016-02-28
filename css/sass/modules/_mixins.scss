@@ -21,7 +21,7 @@
 }
 
 @mixin circle-div($radius) {
-	border-radius: 100%;
+	border-radius: 50%;
 	height: $radius;
 	width: $radius;
 }
