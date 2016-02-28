@@ -55,7 +55,7 @@
         }
 
         //Round the number to a (large) fixed number of decimal places
-        number = number.toFixed(14);
+        number = number.toFixed(12);
 
         //Convert the number to a String
         var numString = String(number);
