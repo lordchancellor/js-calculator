@@ -159,12 +159,18 @@ h1 {
           #calculatorBody .calcRow .btn-calc.btn-reverse {
             font-size: 1.5rem; } }
       #calculatorBody .calcRow .btn-calc.numberKey {
-        background: #E3D2D3; }
+        background: #eee2d8; }
+        #calculatorBody .calcRow .btn-calc.numberKey:hover, #calculatorBody .calcRow .btn-calc.numberKey:focus {
+          background: #d4cac1; }
       #calculatorBody .calcRow .btn-calc.operatorKey {
-        background: #69AACA;
+        background: #69aaca;
         padding-bottom: 10px; }
+        #calculatorBody .calcRow .btn-calc.operatorKey:hover, #calculatorBody .calcRow .btn-calc.operatorKey:focus {
+          background: #5c95b0; }
       #calculatorBody .calcRow .btn-calc.functionKey {
-        background: #7FB08A; }
+        background: #7fb08a; }
+        #calculatorBody .calcRow .btn-calc.functionKey:hover, #calculatorBody .calcRow .btn-calc.functionKey:focus {
+          background: #6d9676; }
       #calculatorBody .calcRow .btn-calc:hover {
         text-decoration: none; }
     #calculatorBody .calcRow a:first-child {

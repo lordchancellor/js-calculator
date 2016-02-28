@@ -108,15 +108,30 @@
 
             &.numberKey {
                 background: $numberKey;
+
+                &:hover,
+                &:focus {
+                    background: $numberShade;
+                }
             }
 
             &.operatorKey {
                 background: $operatorKey;
                 padding-bottom: 10px;
+
+                &:hover,
+                &:focus {
+                    background: $operatorShade;
+                }
             }
 
             &.functionKey {
                 background: $functionKey;
+
+                &:hover,
+                &:focus {
+                    background: $functionShade;
+                }
             }
 
             &:hover {
